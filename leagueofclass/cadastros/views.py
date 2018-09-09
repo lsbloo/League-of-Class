@@ -6,5 +6,7 @@ from .models import Aluno,Professor
 
 
 def cad(request):
+	#url cadastro/ retorna o template de cadastros!
+	#Ñ implementada ainda;
 	return render(request,'cadastro.html');
 

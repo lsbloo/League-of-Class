@@ -18,9 +18,30 @@ from django.contrib import admin
 from django.urls import path
 
 from cadastros.views import cad
+from home.views import home
 
+# URLS PRE DEFINIDAS 
+'''
+	# URLS!
+	> /INDEX
+	/
+	/home
+	/admin
+	/login
+	/cadastro
+	/logout
+	/dashboardProfessor
+	/dashboardAluno
+
+	SUB_URLS:
+		/relatoriosProfessor
+		/relatoriosAluno
+'''
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('',home),
+    path('home/',home),
+    path('index/',home),
     path('cadastro/',cad)
 
 ]
