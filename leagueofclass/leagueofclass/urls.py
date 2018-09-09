@@ -28,7 +28,8 @@ from home.views import home
 	/home
 	/admin
 	/login
-	/cadastro
+	/cadastroAluno
+	/cadastroProfessor
 	/logout
 	/dashboardProfessor
 	/dashboardAluno
@@ -42,6 +43,6 @@ urlpatterns = [
     path('',home),
     path('home/',home),
     path('index/',home),
-    path('cadastro/',cad)
+    path('cadastroProfessor/',cad)
 
 ]

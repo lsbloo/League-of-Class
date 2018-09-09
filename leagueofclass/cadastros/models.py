@@ -9,6 +9,7 @@ class Cpf(models.Model):
 	pessoa = models.OneToOneField("Pessoa",on_delete=models.CASCADE)
 
 
+
 class Pessoa(models.Model):
 		options_sexo=(('M','Masculino'),('F','Feminino'),('NDA','Qualquer Outro'))
 		nome=models.CharField(max_length=60)
@@ -44,6 +45,7 @@ class Disciplinas(models.Model):
 	descricaoDisciplina=models.CharField(max_length=120)
 	professor = models.ForeignKey("Professor",on_delete=models.CASCADE)
 	aluno = models.ForeignKey("Aluno",on_delete=models.CASCADE)
+
 
 
 
