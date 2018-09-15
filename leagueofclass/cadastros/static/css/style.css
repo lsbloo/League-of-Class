@@ -11,6 +11,7 @@ input {
  /* mudar a cor de texto para a entrada de dado do usuario na parte de cadastros*/
  color: white;
 }
+
 body{
 	background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url(../img/back2.jpg);
 	height: 100vh;
@@ -125,14 +126,49 @@ ul li.atual a{
 	padding-bottom: 40px;
 }
 
-#sexo{
-	font-size: 17px;
-}
-
 #sexo label{
 	font-size: 25px;
+	color: white;
 }
 
+#name label{
+	font-size: 25px;
+	color: white;
+}
+
+#numbercpf label{
+    font-size: 25px;
+    color: white;
+}
+#instituicao_fix label {
+    font-size: 25px;
+    color: white;
+}
+#email_fix label {
+    font-size: 25px;
+    color: white;
+}
+
+#disicplina_fix label {
+    font-size: 25px;
+    color: white;
+}
+#matricula_fix label {
+    font-size: 25px;
+    color: white;
+}
+#login_fix label {
+    font-size: 25px;
+    color: white;
+}
+#senha_fix label{
+   font-size:25px;
+   color: white;
+   }
+#data_fix label{
+    font-size:25px;
+    color:white;
+    }
 .submit{
 	padding-left: 100px;
 	padding-top: 30px;

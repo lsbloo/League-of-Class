@@ -22,15 +22,17 @@ class Pessoa(models.Model):
 
 class Professor(Pessoa):
 	nomeInstituicao=models.CharField(max_length=30, primary_key=True)
-	codigo=models.CharField(max_length=10)
-	matricula=models.CharField(max_length=20)
+	#codigo=models.CharField(max_length=10)
+
+	#Adm deleta professor pela matricula;
+	matricula=models.CharField(max_length=12)
 
 
 class Aluno(Pessoa):
 	nomeInstituicao=models.CharField(max_length=30,primary_key=True)
-	descricaoDesempenho=models.CharField(max_length=150)
-	frequencia=models.CharField(max_length=40)
-	professor=models.ManyToManyField("Professor");
+	descricaoDesempenho=models.CharField(max_length=150,blank=True)
+	frequencia=models.CharField(max_length=40,blank=True)
+	professor=models.ManyToManyField("Professor",blank=True);
 
 
 
@@ -42,12 +44,6 @@ class Notas(models.Model):
 
 class Disciplinas(models.Model):
 	nomeDisciplina=models.CharField(max_length=30)
-	descricaoDisciplina=models.CharField(max_length=120)
+	##descricaoDisciplina=models.CharField(max_length=120)
 	professor = models.ForeignKey("Professor",on_delete=models.CASCADE)
 	aluno = models.ForeignKey("Aluno",on_delete=models.CASCADE)
-
-
-
-
-
-

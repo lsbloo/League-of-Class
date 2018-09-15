@@ -1,22 +1,30 @@
 from django import forms
 from .models import Professor
 from .models import Aluno
-from django.forms import ModelForm
 
 
 
-class ProfessorForm(ModelForm):
+class ProfessorForm(forms.ModelForm):
 	'''
 	Responsavel por criar o modelo de formulario a partir do modelo que esta sendo criado no db;
 	'''
-
 	class Meta:
 		model = Professor
 		fields = '__all__'
 
 
 
-class AlunoForm(ModelForm):
+class AlunoForm(forms.ModelForm):
 	class Meta:
 		model = Aluno
-		fields = '__all__'
+		#NÃO É PRECISO RECUPERAR TODOS OS FIELDS NESSE FORM O CADASTRO DE ALUNO, É MAIS SIMPLES QUE O DE PROFESSOR
+		# É NECESSARIO O NOME DA INSTITUIÇÃO TAMBEM!
+		#
+		# form mais simples é isso #PAZ
+		fields = [
+
+		'nome', 'sexo','dataNascimento','email','login','password','nomeInstituicao','descricaoDesempenho',
+
+			];
+
+
