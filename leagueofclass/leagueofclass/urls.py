@@ -19,7 +19,7 @@ from django.urls import path
 
 from cadastros.views import cadastroProfessor
 from cadastros.views import cadastroAluno
-from home.views import home
+from home.views import createAuthentic
 
 # URLS PRE DEFINIDAS 
 '''
@@ -41,9 +41,9 @@ from home.views import home
 '''
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', home),
-    path('home/', home),
-    path('index/', home),
+    path('', createAuthentic),
+    path('home/', createAuthentic),
+    path('index/', createAuthentic),
     path('cadastroProfessor/', cadastroProfessor),
     path('cadastroAluno/',cadastroAluno)
 
