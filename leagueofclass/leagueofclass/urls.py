@@ -20,6 +20,7 @@ from django.urls import path
 from cadastros.views import cadastroProfessor
 from cadastros.views import cadastroAluno
 from cadastros.views import createAuthentic
+from acessos.views import chosePerfil
 
 # URLS PRE DEFINIDAS 
 '''
@@ -31,6 +32,7 @@ from cadastros.views import createAuthentic
 	/login
 	/cadastroAluno
 	/cadastroProfessor
+	/escolherPerfil
 	/logout
 	/dashboardProfessor
 	/dashboardAluno
@@ -41,6 +43,7 @@ from cadastros.views import createAuthentic
 '''
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('escolherPerfil/',chosePerfil),
     path('', createAuthentic),
     path('home/', createAuthentic),
     path('index/', createAuthentic),
