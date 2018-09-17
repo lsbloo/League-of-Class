@@ -21,7 +21,7 @@ from django.contrib import messages
 
 def cadastroProfessor(request):
 	#url cadastro/ retorna o template de cadastros Professor!
-	#Ñ implementada ainda;
+	#Ñ implementada ainda
 
 	
 	if request.method=="POST":
@@ -75,8 +75,9 @@ def cadastroAluno(request):
 		if form.is_valid():
 			try:
 
-				verificaExistenciaPass = User.objects.get(password=form.cleaned_data['password'])
+
 				verificaExistencia = User.objects.get(email=form.cleaned_data['email'])
+				verificaExistenciaPass = User.objects.get(email=form.cleaned_data['email']).password
 				if verificaExistenciaPass or verificaExistencia:
 					return render(request, '/home', {'msg': 'Ja existe um usuario com o mesmo email!'})
 

@@ -23,7 +23,7 @@ class AlunoForm(forms.ModelForm):
 		# form mais simples é isso #PAZ
 		fields = [
 
-		'nome', 'sexo','dataNascimento','email','login','password','nomeInstituicao','descricaoDesempenho',
+		'nome', 'sexo','dataNascimento','email','login','password','nomeInstituicao',
 
 			];
 
