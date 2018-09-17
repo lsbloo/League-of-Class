@@ -1,7 +1,7 @@
 from django import forms
 from .models import Professor
 from .models import Aluno
-
+from .models import Usuarios
 
 
 class ProfessorForm(forms.ModelForm):
@@ -28,3 +28,11 @@ class AlunoForm(forms.ModelForm):
 			];
 
 
+
+class UsuarioForm(forms.ModelForm):
+	'''
+	Responsavel por criar o modelo do form de USers para autenticação!;
+	'''
+	class Meta:
+		model = Usuarios
+		fields = ['email','senha','matricula']

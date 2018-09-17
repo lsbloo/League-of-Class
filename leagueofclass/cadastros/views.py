@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Aluno,Professor
+from .models import Aluno,Professor,Usuarios
 from .form import ProfessorForm,AlunoForm;
 from django.views.generic.edit import CreateView
 from django.shortcuts import redirect
@@ -8,6 +8,13 @@ from time import sleep
 from django.contrib.auth.models import User
 from django.shortcuts import HttpResponseRedirect
 from django.views.decorators.http import require_POST
+from django.shortcuts import render
+from django.contrib.auth.models import User
+from django.contrib.auth import *
+from django.shortcuts import redirect
+from .form import UsuarioForm
+from django.contrib import messages
+
 # Create your views here.
 
 
@@ -91,4 +98,44 @@ def cadastroAluno(request):
 
 
 	return render(request,'leagueofclass/cadastroaluno.html', {'form':form})
+
+
+def createAuthentic(request):
+	# Responsavel por criar a autenticaçao do usuario!
+
+
+
+	if request.method == "POST":
+		form = UsuarioForm(request.POST)
+		if form.is_valid():
+			object_user = User.objects.get(email=form.cleaned_data['email'])
+			user_aut = authenticate(username=object_user.username, password=form.cleaned_data['senha'])
+			try:
+				# Pegar os dados do formulario da pagina inicial!
+
+				# Procura por um usuario da que contem o email (x)
+				# é necessario que seja um "uSER" metodo padrao de busca
+				# user.object.get('meuemail@hotmail.com1').getpassword().getusername();
+				professor_matricula = Professor.objects.get(email=form.cleaned_data['email']).matricula
+
+
+				if user_aut is not None and professor_matricula!=None:
+					login(request, user_aut)
+					return redirect('/dashboardProfessor')
+
+				else:
+					messages.warning(request, 'Email ou Senha errados!')
+					return redirect('/asgagsyas')
+			except Professor.DoesNotExist:
+				if user_aut is not None:
+					login(request,user_aut)
+					return redirect('/dashboardAluno')
+				else:
+					messages.warning(request, 'Email ou Senha errados!')
+					return redirect('/error')
+
+	else:
+		form = UsuarioForm()
+
+	return render(request, 'index.html', {'form': form})
 

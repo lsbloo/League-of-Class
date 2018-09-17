@@ -47,3 +47,10 @@ class Disciplinas(models.Model):
 	##descricaoDisciplina=models.CharField(max_length=120)
 	professor = models.ForeignKey("Professor",on_delete=models.CASCADE)
 	aluno = models.ForeignKey("Aluno",on_delete=models.CASCADE)
+
+
+class Usuarios(models.Model):
+    login=models.CharField(max_length=15)
+    senha=models.CharField(max_length=12)
+    email=models.CharField(max_length=50)
+    matricula=models.CharField(max_length=12,blank=True)

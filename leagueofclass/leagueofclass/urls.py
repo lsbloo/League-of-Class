@@ -19,7 +19,7 @@ from django.urls import path
 
 from cadastros.views import cadastroProfessor
 from cadastros.views import cadastroAluno
-from home.views import createAuthentic
+from cadastros.views import createAuthentic
 
 # URLS PRE DEFINIDAS 
 '''
