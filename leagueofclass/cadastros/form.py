@@ -10,7 +10,7 @@ class ProfessorForm(forms.ModelForm):
 	'''
 	class Meta:
 		model = Professor
-		fields = '__all__'
+		fields = ['nome', 'sexo','dataNascimento','email','login','password','nomeInstituicao', 'matricula']
 
 
 

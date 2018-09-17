@@ -70,7 +70,7 @@ ul li a:hover{
 	width: 100%;
 	margin-left: auto;
 	margin-right: auto;
-	background: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url(../img/bk3.jpg) no-repeat;
+	background: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url(../img_home/bk3.jpg) no-repeat;
 	background-position: 80% 60%;
 	/*background: #3e4444;*/
 	height: 700px;

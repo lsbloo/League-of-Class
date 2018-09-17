@@ -4,9 +4,6 @@ import datetime
 # Responsavel por criar os models do cad de professor e aluno
 
 
-class Cpf(models.Model):
-	numeroCPF=models.CharField(max_length=14)
-	pessoa = models.OneToOneField("Pessoa",on_delete=models.CASCADE)
 
 
 
