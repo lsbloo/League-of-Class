@@ -17,12 +17,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from cadastros.views import cadastroProfessor
+from cadastros.views import cadastroProfessor,cadastroAtividade
 from cadastros.views import cadastroAluno
 from cadastros.views import createAuthentic
 from acessos.views import chosePerfil
 from acessos.views import acessoProfessor
 from acessos.views import acessoAluno
+
 # URLS PRE DEFINIDAS 
 '''
 	# URLS!
@@ -51,7 +52,8 @@ urlpatterns = [
     path('cadastroProfessor/', cadastroProfessor),
     path('cadastroAluno/',cadastroAluno),
     path('dashboardAluno/',acessoAluno),
-    path('dashboardProfessor/',acessoProfessor)
+    path('dashboardProfessor/',acessoProfessor),
+    path('cadastroAtividade/',cadastroAtividade)
 
 
 ]

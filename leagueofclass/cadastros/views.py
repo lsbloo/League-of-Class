@@ -18,7 +18,8 @@ from django.contrib import messages
 # Create your views here.
 
 
-
+def cadastroAtividade(request):
+	return render(request,'leagueofclass/cadastroAtividade.html')
 def cadastroProfessor(request):
 	#url cadastro/ retorna o template de cadastros Professor!
 	#Ñ implementada ainda

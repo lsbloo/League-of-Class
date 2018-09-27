@@ -2,7 +2,19 @@ from django import forms
 from .models import Professor
 from .models import Aluno
 from .models import Usuarios
+from .models import AtividadesProfessor
 
+
+class AtividadeForm():
+	'''
+	Responsavel por criar uma Atividade q esta relacionada a um Professor
+	Cada atividade precisa ter um Professor.
+	uma Atividade pode ter Diversas Perguntas
+	uma Atividade precisa de um titulo;
+	'''
+	class Meta:
+		model = AtividadesProfessor
+		fields = '__all__'
 
 class ProfessorForm(forms.ModelForm):
 	'''

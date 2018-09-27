@@ -51,3 +51,21 @@ class Usuarios(models.Model):
     senha=models.CharField(max_length=12)
     email=models.CharField(max_length=50)
     matricula=models.CharField(max_length=12,blank=True)
+
+class Perguntasx(models.Model):
+
+   opcoes_alternativa_correta = \
+   (
+   ('A', 'Alternativa A'), ('B', 'Alternativa B'), ('C', 'Alternativa C'), ('D', 'Alternativa D')
+   )
+   ask=models.CharField(max_length=100,blank=False)
+   alternativa_a = models.CharField(max_length=200,blank=False)
+   alternativa_b = models.CharField(max_length=200,blank=False)
+   alternativa_c = models.CharField(max_length=200,blank=False)
+   alternativa_d = models.CharField(max_length=200,blank=False)
+   alternativaCorreta = models.CharField(max_length=1,choices=opcoes_alternativa_correta)
+
+class AtividadesProfessor(models.Model):
+   titulo=models.CharField(max_length=200,primary_key=True)
+   perguntas = models.ManyToManyField(Perguntasx)
+   professor = models.OneToOneField("Professor",on_delete=models.CASCADE)
