@@ -26,7 +26,7 @@ from acessos.views import acessoAluno
 from acessos.views import notasAluno
 from acessos.views import frequnciaAluno
 from acessos.views import atividadesAluno
-from acessos.views import disciplinasAluno
+from cadastros.views import cadastroDisciplinaAluno
 from acessos.views import logoutUser
 from acessos.views import failUserXFF
 
@@ -61,7 +61,7 @@ urlpatterns = [
     path('dashboardProfessor/',acessoProfessor),
     path('cadastroAtividade/',cadastroAtividade),
     path('dashboardAluno/notas/', notasAluno),
-    path('dashboardAluno/disciplinas', disciplinasAluno),
+    path('dashboardAluno/disciplinas', cadastroDisciplinaAluno),
     path('dashboardAluno/frequencia', frequnciaAluno),
     path('dashboardAluno/atividades', atividadesAluno),
     path('logout/',logoutUser),

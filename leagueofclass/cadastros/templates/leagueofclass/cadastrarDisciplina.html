@@ -46,18 +46,14 @@
 
 		<article class="formulario-cadastro">
 
-		<h2 align="center"> <strong> Cadastro de Atividades </strong> </h2> <br> <br>
+		<h2 align="center"> <strong> Cadastro de Disciplinas </strong> </h2> <br> <br>
 
 		<div class="formulario"> <!-- Inicio Fomulario -->
 
-			<h2 align="center"> Enviar Atividade </h2> <br> <br>
+			<h2 align="center"> Entre em uma Disciplina </h2> <br> <br>
 			<form method="POST">
 				 {% csrf_token %}
 					{{ form.as_p }}
-
-				<div class="btn-formulario">
-				<input type="submit" name="" value="Cadastrar">
-			</div>
 			</form>
 			 {% if messages %}
                 <script>

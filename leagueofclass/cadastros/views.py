@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from .models import Aluno,Professor,Usuarios
-from .form import ProfessorForm,AlunoForm,AtividadeForm;
+from .models import Aluno,Professor,AtividadesProfessor,Perguntasx
+from .form import ProfessorForm,AlunoForm,AtividadeForm,DisciplinaAlunoForm,AtividadeObject;
 from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.contrib.auth import *
@@ -138,15 +138,47 @@ def createAuthentic(request):
 	return render(request, 'index.html', {'form': form})
 
 def cadastroAtividade(request):
-    if (user_aut != ''):
-        professorAutenciado = user_aut
-        print(professorAutenciado)
-    else:
-        print(user_aut)
+    if request.user.is_authenticated:
+        if request.method=="POST":
+            form = AtividadeForm(request.POST)
+            if form.is_valid():
+                titulo = form.cleaned_data['titulo']
+                pergunta = form.cleaned_data['pergunta']
+                alternativa_a = form.cleaned_data['alternativa_a']
+                alternativa_b = form.cleaned_data['alternativa_b']
+                alternativa_c = form.cleaned_data['alternativa_c']
+                alternativa_d = form.cleaned_data['alternativa_d']
+                opcaoCorreta = form.cleaned_data['alternativa_correta']
+                # -------------------------------------------------------- Perguntas e titulo
 
-   # formulario = AtividadeForm(request.POST)
+                professor = request.user
+                if professor!= None:
+                    professor = Professor(professor)
+                    perguntas = Perguntasx(ask=pergunta, alternativa_a=alternativa_a, alternativa_b=alternativa_b,
+                                           alternativa_c=alternativa_c, alternativa_d=alternativa_d,
+                                           alternativaCorreta=opcaoCorreta)
 
-    return render(request, 'leagueofclass/cadastroAtividade.html')
+
+
+                    '''
+                        -Error aq, nao é possivel utilizar um acesso direto em um campo que contem uma 
+                        relaçao de muito para muitos; \;/
+                    '''
+                    atvP = AtividadesProfessor(titulo=titulo, professor=professor, perguntas=perguntas)
+                    atvP.save()
+
+        else:
+            form = AtividadeForm()
+            messages.warning(request,"Error cadAtv")
+
+    return render(request, 'leagueofclass/cadastroAtividade.html', {'form': form})
+
+
+def cadastroDisciplinaAluno(request):
+    # form
+	return render(request,"leagueofclass/cadastrarDisciplina.html")
+
+
 
 
 

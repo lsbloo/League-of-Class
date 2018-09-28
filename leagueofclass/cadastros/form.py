@@ -3,18 +3,37 @@ from .models import Professor
 from .models import Aluno
 from .models import Usuarios
 from .models import AtividadesProfessor
+from .models import Disciplinas
+from .models import Perguntasx
+
+class DisciplinaAlunoForm(forms.ModelForm):
+    class Meta:
+        model = Disciplinas
+        fields = '__all__'
 
 
-class AtividadeForm():
-	'''
-	Responsavel por criar uma Atividade q esta relacionada a um Professor
-	Cada atividade precisa ter um Professor.
-	uma Atividade pode ter Diversas Perguntas
-	uma Atividade precisa de um titulo;
-	'''
-	class Meta:
-		model = AtividadesProfessor
-		fields = '__all__'
+class AtividadeObject(forms.ModelForm):
+    class Meta:
+        model = AtividadesProfessor
+        fields = '__all__'
+
+class AtividadeForm(forms.Form):
+    opcao = (('A','Alternativa A'),('B','Alternativa B'),('C','Alternativa C'),('D','Alternativa D'))
+    titulo = forms.CharField(max_length=200)
+    pergunta=forms.CharField(max_length=100)
+    alternativa_a = forms.CharField(max_length=200)
+    alternativa_b = forms.CharField(max_length=200)
+    alternativa_c = forms.CharField(max_length=200)
+    alternativa_d = forms.CharField(max_length=200)
+    alternativa_correta = forms.ChoiceField(widget=forms.RadioSelect,choices=opcao)
+
+    '''
+    	Responsavel por criar uma Atividade q esta relacionada a um Professor
+    	Cada atividade precisa ter um Professor.
+    	uma Atividade pode ter Diversas Perguntas
+    	uma Atividade precisa de um titulo;
+    '''
+
 
 class ProfessorForm(forms.ModelForm):
 	'''

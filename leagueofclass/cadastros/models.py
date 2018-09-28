@@ -49,7 +49,8 @@ class Perguntasx(models.Model):
    alternativa_c = models.CharField(max_length=200,blank=False)
    alternativa_d = models.CharField(max_length=200,blank=False)
    alternativaCorreta = models.CharField(max_length=1,choices=opcoes_alternativa_correta)
+
 class AtividadesProfessor(models.Model):
    titulo=models.CharField(max_length=200,primary_key=True)
-   perguntas = models.ManyToManyField(Perguntasx)
-   professor = models.OneToOneField("Professor",on_delete=models.CASCADE)
+   perguntas = models.ManyToManyField(Perguntasx,related_name='perguntas')
+   professor = models.OneToOneField(Professor,related_name='professor',on_delete=models.CASCADE)
