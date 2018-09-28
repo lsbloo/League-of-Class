@@ -24,20 +24,24 @@ class Professor(Pessoa):
 	#Adm deleta professor pela matricula;
 	matricula=models.CharField(max_length=12)
 
-
 class Aluno(Pessoa):
 	nomeInstituicao=models.CharField(max_length=30,primary_key=True)
 	descricaoDesempenho=models.CharField(max_length=150,blank=True)
 	frequencia=models.CharField(max_length=40,blank=True)
-	professor=models.ManyToManyField("Professor",blank=True);
+	professor=models.ManyToManyField("Professor",blank=True)
+	primeiraUnidade = models.CharField(max_length=4)
+	segundaUnidade = models.CharField(max_length=4)
+	terceiraUnidade = models.CharField(max_length=4)
+	media = models.CharField(max_length=4)
+
 
 
 
 class Notas(models.Model):
-	primeiraUnidade=models.CharField(max_length=4)
-	segundaUnidade=models.CharField(max_length=4)
-	terceiraUnidade=models.CharField(max_length=4)
-	media=models.CharField(max_length=4)
+	aluno = models.OneToOneField("Aluno", on_delete=models.CASCADE)
+
+
+
 
 class Disciplinas(models.Model):
 	nomeDisciplina=models.CharField(max_length=30)

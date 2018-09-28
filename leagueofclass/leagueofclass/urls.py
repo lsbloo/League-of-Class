@@ -23,7 +23,10 @@ from cadastros.views import createAuthentic
 from acessos.views import chosePerfil
 from acessos.views import acessoProfessor
 from acessos.views import acessoAluno
-
+from acessos.views import notasAluno
+from acessos.views import frequnciaAluno
+from acessos.views import atividadesAluno
+from acessos.views import disciplinasAluno
 # URLS PRE DEFINIDAS 
 '''
 	# URLS!
@@ -53,7 +56,11 @@ urlpatterns = [
     path('cadastroAluno/',cadastroAluno),
     path('dashboardAluno/',acessoAluno),
     path('dashboardProfessor/',acessoProfessor),
-    path('cadastroAtividade/',cadastroAtividade)
+    path('cadastroAtividade/',cadastroAtividade),
+    path('dashboardAluno/notas/', notasAluno),
+    path('dashboardAluno/disciplinas', disciplinasAluno),
+    path('dashboardAluno/frequencia', frequnciaAluno),
+    path('dashboardAluno/atividades', atividadesAluno),
 
 
 ]

@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import Aluno,Professor,Usuarios
-from .form import ProfessorForm,AlunoForm;
+from .form import ProfessorForm,AlunoForm,AtividadeForm;
 from django.views.generic.edit import CreateView
 from django.shortcuts import redirect
 from django.contrib import messages
@@ -17,9 +17,11 @@ from django.contrib import messages
 
 # Create your views here.
 
+'''
+ __VAR__
+'''
+user_aut=''
 
-def cadastroAtividade(request):
-	return render(request,'leagueofclass/cadastroAtividade.html')
 def cadastroProfessor(request):
 	#url cadastro/ retorna o template de cadastros Professor!
 	#Ñ implementada ainda
@@ -34,6 +36,7 @@ def cadastroProfessor(request):
 
 					verificaExistenciaPass = User.objects.get(password=form.cleaned_data['password'])
 					verificaExistencia = User.objects.get(email=form.cleaned_data['email'])
+
 					if verificaExistenciaPass or verificaExistencia:
 						return render(request,'/home', {'msg': 'Ja existe um usuario com o mesmo email!'})
 
@@ -140,4 +143,19 @@ def createAuthentic(request):
 		form = UsuarioForm()
 
 	return render(request, 'index.html', {'form': form})
+
+def cadastroAtividade(request):
+    if (user_aut != ''):
+        professorAutenciado = user_aut
+        print(professorAutenciado)
+    else:
+        print(user_aut)
+
+   # formulario = AtividadeForm(request.POST)
+
+    return render(request, 'leagueofclass/cadastroAtividade.html')
+
+
+
+
 
