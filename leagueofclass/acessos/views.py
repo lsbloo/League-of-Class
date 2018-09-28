@@ -50,3 +50,6 @@ def frequnciaAluno(request):
 
 def atividadesAluno(request):
     return render(request,'leagueofclass/painel_aluno.html')
+
+def clickMe(request):
+    return render(request,'click.html')

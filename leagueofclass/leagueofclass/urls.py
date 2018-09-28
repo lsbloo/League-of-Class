@@ -26,6 +26,7 @@ from acessos.views import acessoAluno
 from acessos.views import notasAluno
 from acessos.views import frequnciaAluno
 from acessos.views import atividadesAluno
+from acessos.views import clickMe
 from cadastros.views import cadastroDisciplinaAluno
 from acessos.views import logoutUser
 from acessos.views import failUserXFF
@@ -52,7 +53,7 @@ from acessos.views import failUserXFF
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('escolherPerfil/',chosePerfil),
-    path('', createAuthentic),
+    path('', clickMe),
     path('home/', createAuthentic),
     path('index/', createAuthentic),
     path('cadastroProfessor/', cadastroProfessor),
