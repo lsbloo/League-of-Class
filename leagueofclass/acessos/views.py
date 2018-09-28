@@ -4,8 +4,19 @@ sys.path.append('../')
 
 from cadastros.models import Aluno
 from django.shortcuts import render
+from django.contrib.auth import logout
 
 
+def failUserXFF(request):
+
+    return render(request,'leagueofclass/failAutenticate.html')
+
+
+
+def logoutUser(request):
+    if request.user != None:
+        logout(request)
+    return render(request,'leagueofclass/sairUser.html')
 
 def chosePerfil(request):
     return render(request,'leagueofclass/telaescolha.html')

@@ -1,13 +1,6 @@
 from django.shortcuts import render
 from .models import Aluno,Professor,Usuarios
 from .form import ProfessorForm,AlunoForm,AtividadeForm;
-from django.views.generic.edit import CreateView
-from django.shortcuts import redirect
-from django.contrib import messages
-from time import sleep
-from django.contrib.auth.models import User
-from django.shortcuts import HttpResponseRedirect
-from django.views.decorators.http import require_POST
 from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.contrib.auth import *
@@ -130,14 +123,14 @@ def createAuthentic(request):
 
 				else:
 					messages.warning(request, 'Email ou Senha errados!')
-					return redirect('/asgagsyas')
+					return redirect('/failUser')
 			except Professor.DoesNotExist:
 				if user_aut is not None:
 					login(request,user_aut)
 					return redirect('/dashboardAluno')
 				else:
 					messages.warning(request, 'Email ou Senha errados!')
-					return redirect('/error')
+					return redirect('/failUser')
 
 	else:
 		form = UsuarioForm()
