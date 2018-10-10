@@ -1,0 +1,176 @@
+/*++++++++++++++++RESET+++++++++++++++*/
+
+*{
+	padding: 0;
+	margin: 0;
+	font-family: 'Roboto Slab', serif;
+}
+
+/*++++++++++++++++INICIO HEADER+++++++++++++++*/
+input {
+ /* mudar a cor de texto para a entrada de dado do usuario na parte de cadastros*/
+ color: white;
+}
+
+body{
+	background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url(../img/back2.jpg);
+	height: 100vh;
+	background-size: cover;
+	background-position: center;
+}
+
+ul{
+	font-size: 25px;
+	float: right;
+	list-style-type: none;
+	margin-top: 50px;
+	margin-right: 200px;
+}
+
+ul li{
+	display: inline-block;
+}
+
+ul li a{
+	text-decoration: none;
+	color: #fff;
+	padding: 5px 20px;
+	border: 2px solid transparent;
+	transition: 0.6s ease;
+}
+
+ul li a:hover{
+	background-color: #fff;
+	color: #000;
+}
+
+ul li.atual a{
+	background-color: #fff;
+	color: #000;
+}
+
+.logo img{
+	float: left;
+	width: 200px;
+	height: auto;
+
+}
+
+.header{
+
+	max-width: 1920px;
+	margin: auto;
+}
+
+/*++++++++++++INICIO TEXTO+++++++++++++++++++*/
+
+.title{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+}
+
+.title h1{
+
+	color: #fff;
+	font-size: 80px;
+}
+
+.title p{
+	position: absolute;
+	color: #fff;
+	font-size: 20px;
+	top: 120%;
+	left: 40%;
+	transform: translate(-35%,-50%);
+}
+
+/*++++++++++++INICIO BOTAO+++++++++++++++++++*/
+
+.botao{
+	position: absolute;
+	top: 75%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+}
+
+.btn{
+	border: 2px solid #fff;
+	padding: 10px 30px;
+	color: #fff;
+	text-decoration: none;
+	transition: 0.6s ease;
+}
+
+.btn:hover{
+	background-color: #fff;
+	color: #000;
+
+}
+
+.title{
+	padding: 10px;
+	color: white;
+	font-size: 25px;
+}
+
+.button{
+	text-align: center;
+	padding-top: 20px;
+	size: 20px;
+}
+
+#titulo{
+	color: yellow;
+	padding-bottom: 40px;
+}
+
+#sexo label{
+	font-size: 25px;
+	color: white;
+}
+
+#name label{
+	font-size: 25px;
+	color: white;
+}
+
+#numbercpf label{
+    font-size: 25px;
+    color: white;
+}
+#instituicao_fix label {
+    font-size: 25px;
+    color: white;
+}
+#email_fix label {
+    font-size: 25px;
+    color: white;
+}
+
+#disicplina_fix label {
+    font-size: 25px;
+    color: white;
+}
+#matricula_fix label {
+    font-size: 25px;
+    color: white;
+}
+#login_fix label {
+    font-size: 25px;
+    color: white;
+}
+#senha_fix label{
+   font-size:25px;
+   color: white;
+   }
+#data_fix label{
+    font-size:25px;
+    color:white;
+    }
+.submit{
+	padding-left: 100px;
+	padding-top: 30px;
+
+}
