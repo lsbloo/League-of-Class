@@ -18,11 +18,11 @@ class Pessoa(models.Model):
 			return self.nome
 
 class Professor(Pessoa):
-	nomeInstituicao=models.CharField(max_length=30, primary_key=True)
+	nomeInstituicao=models.CharField(max_length=30)
 	#codigo=models.CharField(max_length=10)
 
 	#Adm deleta professor pela matricula;
-	matricula=models.CharField(max_length=12)
+	matricula=models.CharField(max_length=12, primary_key=True)
 
 	class Meta:
 		verbose_name_plural = "Professores"
@@ -34,10 +34,8 @@ class Aluno(Pessoa):
 	nomeInstituicao=models.CharField(max_length=30,primary_key=True)
 	descricaoDesempenho=models.CharField(max_length=150,blank=True)
 	professor=models.ManyToManyField("Professor",blank=True)
-	primeiraUnidade = models.CharField(max_length=4, blank=True)
-	segundaUnidade = models.CharField(max_length=4, blank=True)
-	terceiraUnidade = models.CharField(max_length=4, blank=True)
 	media = models.CharField(max_length=4, blank=True)
+	#tem que criar uma matrícula e colocar ela como chave primária
 
 	class Meta:
 		verbose_name_plural = "Alunos"
@@ -64,7 +62,7 @@ class Frequencia(models.Model):
 		return self.disciplina.nomeDisciplina + ' - ' + self.aluno.nome + ' - ' + str(self.data)
 
 
-
+'''
 class Instituicao(models.Model):
 	#usei a lógica de que o admin quem cadastra as intiuições, por isso usei choices
 	option_instituicao = (('UFPB', 'UFPB'), ('UFCG', 'UFCG'), ('UEPB', 'UEPB'))
@@ -79,7 +77,7 @@ class Instituicao(models.Model):
 		return self.nome
 
 #até aqui
-
+'''
 
 class Notas(models.Model):
 	aluno = models.ForeignKey("Aluno", on_delete=models.CASCADE)
