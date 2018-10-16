@@ -1,7 +1,7 @@
 import sys
 sys.path.append('../')
 
-from cadastros.models import Aluno, Frequencia, Disciplinas, Notas
+from cadastros.models import Aluno, Frequencia, Disciplinas, Notas, Professor
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout
 
@@ -23,8 +23,15 @@ def chosePerfil(request):
 
 
 def acessoProfessor(request):
+    data = {}
+    data['exibeInicio'] = True
+    data['exibeNotas'] = False
+    data['exibeCadFrequencia'] = False
+    data['msg'] = 'Suas informações:'
+    data['professores'] = Professor.objects.filter(nome=request.user)
+    data['usuario'] = request.user
 
-    return render(request,'leagueofclass/painel_professor.html')
+    return render(request,'leagueofclass/painel_professor.html', data)
 
 def acessoAluno(request):
     data = {}
@@ -34,7 +41,7 @@ def acessoAluno(request):
     data['exibeDisciplinas'] = False
     data['exibeFrequencia'] = False
     data['msg'] = 'Suas informações:'
-    data['alunos'] = Aluno.objects.filter(login=request.user)
+    data['alunos'] = Aluno.objects.filter(nome=request.user)
     data['usuario'] = request.user
     return render(request,'leagueofclass/painel_aluno.html', data)
 
@@ -54,8 +61,8 @@ def notasAluno(request):
         data['qsNotas'] = Notas.objects.filter(aluno__login__exact=request.user).filter(disciplina__nomeDisciplina__exact=disciplinaEsc)
     return render(request,'leagueofclass/painel_aluno.html', data)
 
-
-    return render(request,'leagueofclass/painel_aluno.html', data)
+def cadNotas(request):
+    return render(request, 'leagueofclass/painel_professor.html')    
 
 def disciplinasAluno(request):
     data = {}
@@ -82,6 +89,12 @@ def frequenciaAluno(request):
         data['msg2'] = disciplinaEsc
         data['qsFreqDisciplinas'] = Frequencia.objects.filter(aluno__login__exact=request.user).filter(disciplina__nomeDisciplina__exact=disciplinaEsc)
     return render(request,'leagueofclass/painel_aluno.html', data)
+
+def cadFrequencia(request):
+    data = {}
+    data['exibeCadFreq'] = True
+    data['msg'] = 'Frequência:'
+    return render(request, 'leagueofclass/painel_professor.html', data)
 
 def atividadesAluno(request):
     return render(request,'leagueofclass/painel_aluno.html')

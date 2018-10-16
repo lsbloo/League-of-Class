@@ -54,9 +54,11 @@ urlpatterns = [
     path('dashboardProfessor/',acessoProfessor),
     path('cadastroAtividade/',cadastroAtividade),
     path('dashboardAluno/notas', notasAluno),
+    path('dashboardProfessor/lancarNotas', cadNotas),
     path('dashboardAluno/disciplinas', disciplinasAluno),
     path('dashboardAluno/frequencia', frequenciaAluno),
     path('dashboardAluno/atividades', atividadesAluno),
+    path('dashboardProfessor/lancarFrequencia', cadFrequencia),
     path('logout/',logoutUser),
     path('failUser/',failUserXFF)
 
