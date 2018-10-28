@@ -16,22 +16,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-
+from django.conf import settings
 from cadastros.views import cadastroProfessor,cadastroAtividade
 from cadastros.views import cadastroAluno
 from cadastros.views import createAuthentic
-from acessos.views import chosePerfil
-from acessos.views import acessoProfessor
-from acessos.views import acessoAluno
-from acessos.views import notasAluno
-from acessos.views import frequnciaAluno
-from acessos.views import atividadesAluno
-from acessos.views import clickMe
+from acessos.views import *
 from cadastros.views import cadastroDisciplinaAluno
-from acessos.views import logoutUser
-from acessos.views import failUserXFF
 
-# URLS PRE DEFINIDAS 
+
+# URLS PRE DEFINIDAS
 '''
 	# URLS!
 	> /INDEX
@@ -61,12 +54,16 @@ urlpatterns = [
     path('dashboardAluno/',acessoAluno),
     path('dashboardProfessor/',acessoProfessor),
     path('cadastroAtividade/',cadastroAtividade),
-    path('dashboardAluno/notas/', notasAluno),
-    path('dashboardAluno/disciplinas', cadastroDisciplinaAluno),
-    path('dashboardAluno/frequencia', frequnciaAluno),
+    path('dashboardAluno/notas', notasAluno),
+    path('dashboardAluno/disciplinas', disciplinasAluno),
+    path('dashboardAluno/frequencia', frequenciaAluno),
     path('dashboardAluno/atividades', atividadesAluno),
+    path('dashboardProfessor/notas', opcCadNota),
+    path('dashboardProfessor/notas/lancarNotas', cadNotas),
+    path('dashboardProfessor/disciplina', cadDisciplina),
+    path('dashboardProfessor/frequencia', lancarFreq),
     path('logout/',logoutUser),
     path('failUser/',failUserXFF)
 
-
 ]
+

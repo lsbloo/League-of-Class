@@ -1,12 +1,13 @@
 from django.shortcuts import render
-from .models import Aluno,Professor,AtividadesProfessor,Perguntasx
-from .form import ProfessorForm,AlunoForm,AtividadeForm,DisciplinaAlunoForm,AtividadeObject;
+from .models import Aluno,Professor,Perguntasx
+from .form import AlunoForm,DisciplinaAlunoForm,AtividadeForm
 from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.contrib.auth import *
 from django.shortcuts import redirect
 from .form import UsuarioForm
 from django.contrib import messages
+from django.core.files.storage import FileSystemStorage
 
 # Create your views here.
 
@@ -14,12 +15,16 @@ from django.contrib import messages
  __VAR__
 '''
 user_aut=''
+def handle_uploaded_file(f):
+    with open('some/file/name.txt', 'wb+') as destination:
+        for chunk in f.chunks():
+            destination.write(chunk)
 
 def cadastroProfessor(request):
 	#url cadastro/ retorna o template de cadastros Professor!
 	#Ñ implementada ainda
 
-	
+
 	if request.method=="POST":
 		form = ProfessorForm(request.POST)
 
@@ -50,7 +55,7 @@ def cadastroProfessor(request):
 
 		else:
 			messages.warning(request, 'Preencha todos os campos corretamente!')
-			
+
 	else:
 		form = ProfessorForm()
 	return render(request,'leagueofclass/cadastroprofessor.html' , {'form':form})
@@ -59,15 +64,7 @@ dados_aluno_necessario={}
 def cadastroAluno(request):
 	if request.method=="POST":
 		form = AlunoForm(request.POST)
-		'''
-		dados_aluno_necessario['nome'] = request.POST.get('nome')
-		dados_aluno_necessario['sexo'] = request.POST.get('sexo')
-		dados_aluno_necessario['dataNascimento'] = request.POST.get('dataNascimento')
-		dados_aluno_necessario['email'] = request.POST.get('email')
-		dados_aluno_necessario['login'] = request.POST.get('login')
-		dados_aluno_necessario['password'] = request.POST.get('senha')
-		dados_aluno_necessario['nomeInstituicao'] = request.POST.get('nomeInstituicao')
-		'''
+
 
 		if form.is_valid():
 			try:
@@ -109,11 +106,6 @@ def createAuthentic(request):
 			object_user = User.objects.get(email=form.cleaned_data['email'])
 			user_aut = authenticate(username=object_user.username, password=form.cleaned_data['senha'])
 			try:
-				# Pegar os dados do formulario da pagina inicial!
-
-				# Procura por um usuario da que contem o email (x)
-				# é necessario que seja um "uSER" metodo padrao de busca
-				# user.object.get('meuemail@hotmail.com1').getpassword().getusername();
 				professor_matricula = Professor.objects.get(email=form.cleaned_data['email']).matricula
 
 
@@ -138,49 +130,33 @@ def createAuthentic(request):
 	return render(request, 'index.html', {'form': form})
 
 def cadastroAtividade(request):
-    if request.user.is_authenticated:
-        if request.method=="POST":
-            form = AtividadeForm(request.POST)
-            if form.is_valid():
-                titulo = form.cleaned_data['titulo']
-                pergunta = form.cleaned_data['pergunta']
-                alternativa_a = form.cleaned_data['alternativa_a']
-                alternativa_b = form.cleaned_data['alternativa_b']
-                alternativa_c = form.cleaned_data['alternativa_c']
-                alternativa_d = form.cleaned_data['alternativa_d']
-                opcaoCorreta = form.cleaned_data['alternativa_correta']
-                # -------------------------------------------------------- Perguntas e titulo
+	if request.user.is_authenticated:
+		if request.method=="POST":
+			form = AtividadeForm(request.POST,request.FILES)
+			if form.is_valid():
 
-                professor = request.user
-                if professor!= None:
-                    professor = Professor(professor)
-                    perguntas = Perguntasx(ask=pergunta, alternativa_a=alternativa_a, alternativa_b=alternativa_b,
-                                           alternativa_c=alternativa_c, alternativa_d=alternativa_d,
-                                           alternativaCorreta=opcaoCorreta)
+				titulo = form.cleaned_data['titulo']
+				observacoes = form.cleaned_data['observacoes']
+				instrucoes = form.cleaned_data['instrucoes']
+				data_entrega = form.cleaned_data['data_entrega']
 
+				professor=request.user
+				if professor!= None:
+					param=Professor.objects.get(email=request.user.email)
+					if  param.matricula != None:
 
+						perguntas = Perguntasx(matricula_professor=param.matricula,titulo=titulo,observacoes=observacoes,
+											   instrucoes=instrucoes,data_entrega=data_entrega,atividade=request.FILES['atividade'])
+						Perguntasx.save(perguntas)
+						return redirect("/dashboardProfessor")
+					else:
+						return redirect("/error")
+		else:
+			form = AtividadeForm()
 
-                    '''
-                        -Error aq, nao é possivel utilizar um acesso direto em um campo que contem uma 
-                        relaçao de muito para muitos; \;/
-                    '''
-                    atvP = AtividadesProfessor(titulo=titulo, professor=professor, perguntas=perguntas)
-                    atvP.save()
-
-        else:
-            form = AtividadeForm()
-            messages.warning(request,"Error cadAtv")
-
-    return render(request, 'leagueofclass/cadastroAtividade.html', {'form': form})
+	return render(request, 'leagueofclass/cadastroAtividade.html', {'form': form})
 
 
 def cadastroDisciplinaAluno(request):
     # form
 	return render(request,"leagueofclass/cadastrarDisciplina.html")
-
-
-
-
-
-
-

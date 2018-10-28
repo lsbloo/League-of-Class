@@ -45,6 +45,7 @@
     </header>
     <section id="content-area">
         <div class="heading">
+          <!-- home do dashboardAluno -->
           {% if exibeInicio == True %}
             <h1>{{ msg }}</h1>
             <!-- talvez um if pra imprimir as msg -->
@@ -54,15 +55,68 @@
               <h5>Aluno da Instituição: {{aluno.nomeInstituicao}}</h5>
             {% endfor %}
           {% endif %}
+
+          <!-- exibe notas -->
           {% if exibeNotas == True %}
             <h1>{{ msg }}</h1>
-            <!-- talvez um if pra imprimir as msg -->
-            {% for aluno in alunos %}
-              <h5>Nota 1: {{aluno.primeiraUnidade}}</h5>
-              <h5>Nota 2: {{aluno.segundaUnidade}}</h5>
-              <h5>Nota 3: {{aluno.terceiraUnidade}}</h5>
+            <br>
+            <form action="/dashboardAluno/notas" id="notas" method="POST">
+            {% csrf_token %}
+            <select name="notasDisc" form="notas">
+              {% for disciplina in qsDisciplinas %}
+                <option value={{ disciplina.nomeDisciplina }}> {{ disciplina.nomeDisciplina }} </option>
+              {% endfor %}
+            </select>
+            <input type="submit" Enviar>
+            </form>
+          {% endif %}
+
+            {% if exibeNotasDisciplina == True %}
+              <h4>Disciplina: {{ msg2 }}</h4>
+              {% for nota in qsNotas %}
+                Nota 1: {{ nota.nota1 }}
+                <br>
+                Nota 2: {{ nota.nota2 }}
+                <br>
+                Nota 3: {{ nota.nota3 }}
+                <br><br>
+                Média: {{ nota.media }}
+              {% endfor %}
+            {% endif %}
+
+
+
+
+          <!-- exibe disciplinas matriculadas -->
+          {% if exibeDisciplinas == True %}
+            <h1>{{ msg }}</h1>
+            {% for disciplina in disciplinas %}
+              <ul>
+                <li>{{disciplina.nomeDisciplina}}</li>
+              </ul>
+            {% endfor %}
+          {% endif %}
+
+          <!-- exibe frequência do aluno -->
+          {% if exibeFrequencia == True %}
+            <h1>{{ msg }}</h1>
+            <br>
+            <form action="/dashboardAluno/frequencia" id="frequencia" method="POST">
+            {% csrf_token %}
+            <select name="freqDisc" form="frequencia">
+              {% for disciplina in qsDisciplinas %}
+                <option value={{ disciplina.nomeDisciplina }}> {{ disciplina.nomeDisciplina }} </option>
+              {% endfor %}
+            </select>
+            <input type="submit" Enviar>
+            </form>
+          {% endif %}
+
+          {% if exibeFreqDisciplina == True %}
+            <h4>Disciplina: {{ msg2 }}</h4>
+            {% for freq in qsFreqDisciplinas %}
+              {{ freq.data }} | {{ freq.frequencia }}
               <br>
-              <h5>Sua Média: {{aluno.media}}
             {% endfor %}
           {% endif %}
         </div>

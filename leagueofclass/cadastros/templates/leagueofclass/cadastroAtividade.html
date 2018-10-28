@@ -1,76 +1,123 @@
 {% load static %}
 <html lang="pt-br">
+
 <head>
-	<meta charset="utf-8">
-	<meta name="description" content="A plataforma que você aprende jogando, conheça nossa plataforma iteratica de gamificação">
-	<meta name="author" content="Lucas Aragão">
-	<meta name="viewport" content="width=device-width, inital-scale=1.0">
-	<title>Cadastro de Professor - LOC</title>
-	<link rel="stylesheet" type="text/css" href="{% static 'css/style1.css' %}">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <title>Dashboard Professor</title>
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+        crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script async defer src="https://buttons.githubio/buttons.js"></script>
+    <script src="main.js"></script>
+<html lang="pt-br">
 
-	<link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Passion+One" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-
-    <script type="text/javascript" src="../static/jquery/jquery-3.3.1.js"></script>
-    <script type="text/javascript" src="../static/jquery/jquery.mask.min.js"></script>
-
-    <script type="text/javascript">
-    <!--responsavel por criar uma mascara para validação do CPF-->
-        $(document).ready(function(){
-            $("#matricula").mask("000000000000");
-        });
-    </script>
-
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <title>Dashboard professor</title>
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+        crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script async defer src="https://buttons.githubio/buttons.js"></script>
+    <script src="main.js"></script>
 </head>
+
 <body>
+    <section id="sideMenu">
+        <nav>
+            <a href="/dashboardProfessor/" class="active"><i class="fa fa-home" aria-hidden="true"></i>Início</a>
+            <a href="/dashboardProfessor/notas" class=""><i class="fa fa-sticky-note" aria-hidden="true"></i>Cadastrar notas</a>
+            <a href="/dashboardProfessor/disciplina" class=""><i class="fa fa-map" aria-hidden="true"></i>Cadastrar disciplinas</a>
+            <a href="/dashboardProfessor/frequencia" class=""><i class="fa fa-address-book" aria-hidden="true"></i>Lançar frequência</a>
+            <a href="" class=""><i class="fa fa-tasks" aria-hidden="true"></i>Registrar atividades</a>
+        </nav>
+    </section>
+    <header>
+        <div class="search-area">
+            <i class="fa fa-search" aria-hidden="true"></i>
+            <input type="text" name="" value="">
+        </div>
+        <div class="user-area">
+            <a href="#" class="add">Bem vindo(a), professor(a)</a>
+            <a href="#" class="notification">
+                <i class="fa fa-bell" aria-hidden="true"></i>
+                <span class="circle">3</span></a>
+        </div>
+    </header>
+    <section id="content-area">
+        <div class="heading">
 
+            <!-- Cadastro de Atividades -->
+                <div class="formulario-atividades" >
+                    <form method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                    <fieldset>
+                     <h1>Registrar Atividades</h1>
+                     <table cellspacing="20">
+                      <tr>
+                       <td>
+                        <label for="">Titulo da Atividade: </label>
+                       </td>
+                       <td align="left">
+                        <input type="text" id="titulo" name="titulo">
+                       </td>
+                      </tr>
+                      <tr>
+                       <td>
+                        <label for="">Atividade (ex: .pdf, .doc, .txt)</label>
+                       </td>
+                       <td>
+                        <input type="file" name="atividade" id="atividade">
+                       </td>
+                      </tr>
+                      <tr>
+                       <td>
+                        <label for="">Instruções sobre a Atividade: </label>
+                       </td>
+                       <td align="left">
+                        <input type="text" name="instrucoes" id="instrucoes">
+                       </td>
+                      </tr>
+                      <tr>
+                       <td>
+                        <label for="">Observações: </label>
+                       </td>
+                       <td align="left">
+                        <input type="text" name="observacoes" id="observacoes">
+                       </td>
+                      </tr>
+                      <tr>
+                       <td>
+                        <label for="">Data para entrega da Atividade </label>
+                       </td>
+                       <td align="left">
+                         <input type="date" name="data_entrega" id="data_entrega">
+                       </td>
+                      </tr>
+                     </table>
+                    </fieldset>
+                    <br/>
+                    <input type="submit" value="Lançar">
+                    </form>
 
-	<!--Inicio cabeçalho-->
-	<header>
-		<div class="header">
-			<div class="logo">
-				<a href="/home"><img src="{% static 'img_home/logo.png' %}" alt="Logo League of Class"></a>
-			</div> <!--Final logo-->
-			<div class="menu">
-				<div class="nav">
-					<ul>
-						<li><a href="/home">Home</a></li>
-						<li><a href="#">Saiba mais</a></li>
-						<li><a href="#">Contato</a></li>
-					</ul>
-				</div>
-			</div> <!--Final menu-->
-		</div><!--FINAL DO HEADER-->
-	</header>
+                    <div>
+			            {% if messages %}
+                     <script>
+                            {% for message in messages %}
+                                alert(' {{ message }} ')
+                        </script>
+                                 {% endfor %}
+                                {% endif %}
+                    </div>
+                </div>
 
-		<article class="formulario-cadastro">
-
-		<h2 align="center"> <strong> Cadastro de Atividades </strong> </h2> <br> <br>
-
-		<div class="formulario"> <!-- Inicio Fomulario -->
-
-			<h2 align="center"> Enviar Atividade </h2> <br> <br>
-			<form method="POST">
-				 {% csrf_token %}
-					{{ form.as_p }}
-
-				<div class="btn-formulario">
-				<input type="submit" name="" value="Cadastrar">
-			</div>
-			</form>
-			 {% if messages %}
-                <script>
-                {% for message in messages %}
-                    alert(' {{ message }} ')
-                </script>
-                 {% endfor %}
-                {% endif %}
-		</div> <!-- Final formulario -->
-
-	</article>
-
-
-
+        </div>
+    </section>
 </body>
+
 </html>
