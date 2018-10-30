@@ -14,35 +14,19 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
 from django.conf import settings
 from cadastros.views import cadastroProfessor,cadastroAtividade
 from cadastros.views import cadastroAluno
 from cadastros.views import createAuthentic
+from cadastros.views import lancarAtividades
 from acessos.views import *
 from cadastros.views import cadastroDisciplinaAluno
 
+from django.conf import settings
 
-# URLS PRE DEFINIDAS
-'''
-	# URLS!
-	> /INDEX
-	/
-	/home
-	/admin
-	/login
-	/cadastroAluno
-	/cadastroProfessor
-	/escolherPerfil
-	/logout
-	/dashboardProfessor
-	/dashboardAluno
-
-	SUB_URLS:
-		/relatoriosProfessor
-		/relatoriosAluno
-'''
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('escolherPerfil/',chosePerfil),
@@ -62,8 +46,12 @@ urlpatterns = [
     path('dashboardProfessor/notas/lancarNotas', cadNotas),
     path('dashboardProfessor/disciplina', cadDisciplina),
     path('dashboardProfessor/frequencia', lancarFreq),
+    path('dashboardProfessor/lancarAtividade/',lancarAtividades),
     path('logout/',logoutUser),
     path('failUser/',failUserXFF)
 
 ]
+
+if settings.DEBUG:
+    urlpatterns+= static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
 
